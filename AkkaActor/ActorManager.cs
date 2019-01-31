@@ -57,7 +57,7 @@ namespace AkkaActor
 
                 AkkaActor1.Tell(i++);
             }
-            else Self.Tell("Actor 1 not available. So starting again!!!");
+            else Self.Tell("Actor 1(Sender) not available. So starting again!!!");
         }
     }
 }

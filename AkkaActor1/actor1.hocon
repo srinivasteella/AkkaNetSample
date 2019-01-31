@@ -1,0 +1,29 @@
+﻿akka {
+	loglevel = INFO
+	actor {
+		provider = cluster
+		debug
+            {
+              receive = on      # log any received message
+              autoreceive = on  # log automatically received messages, e.g. PoisonPill
+              lifecycle = on    # log actor lifecycle changes
+              event-stream = on # log subscription changes for Akka.NET event stream
+              unhandled = on    # log unhandled messages sent to actors
+            }
+	}
+	remote {				
+		log-remote-lifecycle-events=INFO
+        dot-netty.tcp {
+		    port = 8888
+		    hostname = localhost
+			send-buffer-size = 99998192000b
+			receive-buffer-size = 99998192000b
+			maximum-frame-size = 9994096000b
+        }
+	}            
+	cluster {
+		seed-nodes = ["akka.tcp://AkkaActor1@localhost:8888"] 
+		auto-down-unreachable-after=off
+		roles=[actor1]
+	}
+}

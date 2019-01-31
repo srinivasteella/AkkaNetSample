@@ -53,28 +53,22 @@ namespace AkkaActor1
 
         private void HandleStart(string message)
         {
-            Console.WriteLine("Machine started!!!");
-
             Context.Watch(Sender);
             if (AkkaActor != null)
             {
-                AkkaActor.Tell(message);
+                AkkaActor.Tell("Receiver Started!!!");
             }
-            else Self.Tell("Starting again");
+            else Self.Tell("Receiver not reayd. Trying again!!!");
         }
 
         private void HandleResponse(int i)
         {
             Context.Watch(Sender);
-            Thread.Sleep(2000);
 
-            if (AkkaActor != null)
-            {
-                Console.WriteLine("I Sent Message " + i);
+            Console.WriteLine("I Sent Message " + i);
+            Thread.Sleep(1000);
 
-                AkkaActor.Tell("Message " + i);
-            }
-            else Self.Tell("Starting again");
+            AkkaActor.Tell("Message " + i);
         }
     }
 }

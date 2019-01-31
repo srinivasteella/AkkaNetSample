@@ -53,11 +53,11 @@ namespace AkkaActor
             Context.Watch(Sender);
             if (AkkaActor1 != null)
             {
-                Thread.Sleep(2000);
+                Thread.Sleep(1000);
 
                 AkkaActor1.Tell(i++);
             }
-            else Self.Tell("starting again");
+            else Self.Tell("Actor 1 not available. So starting again!!!");
         }
     }
 }
